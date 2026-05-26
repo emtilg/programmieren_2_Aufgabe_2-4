@@ -40,6 +40,6 @@ def find_person_data_by_name(suchstring):
 #print(find_person_data_by_name("Heyer, Yannic"))
 
 
-eintrag = find_person_data_by_name("Huber, Julian")
-Picturepath = eintrag["picture_path"]
+#eintrag = find_person_data_by_name("Huber, Julian")
+#Picturepath = eintrag["picture_path"]
 #print(Picturepath)
