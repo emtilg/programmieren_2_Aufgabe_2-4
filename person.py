@@ -70,8 +70,11 @@ class Person:
         return {}
     
     @staticmethod
-    def load_by_id(personendata, id):
+    def load_by_id(id):
         #informationen über eine Person anhand ihrer ID auslesen und als Objekt einer Klasse speichern
+        
+        personendata = Person.load_person_data()
+
         for person in personendata:
             if person["id"] == id:
                 return Person(person["id"],
@@ -124,4 +127,4 @@ if __name__ == "__main__":
     
 
 
-    print(Person.load_by_id(Person.load_person_data(),2))
+    print(Person.load_by_id(1).calc_age())
