@@ -10,6 +10,11 @@ import numpy as np
 class EKGdata:
 
     @staticmethod
+    def Json_to_dict(Json):
+        with open(Json, "r", encoding="utf-8") as f:
+            return json.load(f)
+
+    @staticmethod
     def make_plot_df(df):
 
         # Erstellte einen Line Plot, der ersten 2000 Werte mit der Zeit aus der x-Achse
@@ -49,7 +54,7 @@ class EKGdata:
 ## Konstruktor der Klasse soll die Daten einlesen
 
     def __init__(self, ekg_dict):
-        #pass
+
         self.id = ekg_dict["id"]
         self.date = ekg_dict["date"]
         self.data = ekg_dict["result_link"]
@@ -96,3 +101,6 @@ if __name__ == "__main__":
     plot = EKGdata.make_plot_df(Leistungstest_df)
     #plot.show()
 
+    #Ekgdata = EKGdata(EKGdata.Json_to_dict("data/person_db.json"))
+    #print(EKGdata.calc_avg_hr())
+    print(type(EKGdata.Json_to_dict("data/person_db.json")))

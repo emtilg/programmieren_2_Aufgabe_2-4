@@ -27,9 +27,10 @@ def get_person_object_by_full_name(full_name):
     firstname = full_name.split(", ")[1]
     lastname = full_name.split(", ")[0]
 
-    for person in persons:
-        if person.firstname==firstname and person.lastname==lastname:
-            return person
+    for e in persons:
+        print(e)
+        #if e["firstname"]==firstname and e["lastname"]==lastname:
+        #    return e
 
 class Person:
 
@@ -127,4 +128,5 @@ if __name__ == "__main__":
     
 
 
-    print(Person.load_by_id(1).calc_age())
+    #print(Person.load_by_id(1).calc_age())
+    print(type(get_person_object_by_full_name("Huber, Julian")))
