@@ -1,7 +1,7 @@
 import streamlit as st
 import read_data
 from PIL import Image
-import ekgdata
+import ignore_ekgdata
 import person
 import ekgdata_new_class
 
@@ -44,8 +44,8 @@ with spalte2:
                                                      )
 
 
-    Leistungstest_df = ekgdata.EKGdata.read_my_csv(ekgdata.EKGdata.load_EKG_by_id(id))
-    plot = ekgdata.EKGdata.make_plot_df(Leistungstest_df)
+    #Leistungstest_df = ekgdata.EKGdata.read_my_csv(ekgdata.EKGdata.load_EKG_by_id(id))
+    #plot = ekgdata.EKGdata.make_plot_df(Leistungstest_df)
 
     #if st.session_state.modus == "Ruhe":
         #st.plotly_chart(plot)
