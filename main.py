@@ -74,7 +74,7 @@ with spalte2:
         st.plotly_chart(fig)
 
     except IndexError:
-        st.markdown("<br>"*2, unsafe_allow_html=True)
+        st.markdown("<br>"*4, unsafe_allow_html=True)
         st.info("######     Diese Person hat keinen EKG bei Belastung durchgeführt")
 
 
