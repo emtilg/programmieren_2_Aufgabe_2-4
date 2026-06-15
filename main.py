@@ -28,7 +28,7 @@ id = eintrag["id"]
 spalte1, spalte2 = st.columns([1,3])
 
 with spalte1:
-    st.markdown("<br>"*2, unsafe_allow_html=True)
+    st.markdown("<br>"*4, unsafe_allow_html=True)
     image = Image.open(Picturepath)
     st.image(image)
 
@@ -49,10 +49,10 @@ with spalte1:
     try:
         Figure = ekgdata_new_class.EKGdata(ekgdata_new_class.EKGdata.ekg_dict_choose(id-1,a))
         avg_hr = Figure.calc_avg_hr()
-        avg_hr_rounded = round(avg_hr,3)
+        avg_hr_rounded = round(avg_hr)
 
         #st.write("###### Alter: ",person.Person.load_by_id(id).calc_age())
-        st.write("###### Maximalpuls: ",avg_hr_rounded)
+        st.write("###### Durchschnittspuls: ",avg_hr_rounded)
 
     except IndexError:
         st.write("######  ")

@@ -2,6 +2,7 @@ import json
 import plotly.express as px
 import find_peaks
 import pandas as pd
+import plotly.graph_objects as go
 
 
 # Klasse EKG-Data für Peakfinder, die uns ermöglicht peaks zu finden
@@ -23,8 +24,8 @@ class EKGdata:
         self.id = ekg_dict["id"]
         self.date = ekg_dict["date"]
         self.data = ekg_dict["result_link"]
-        self.df_1 = find_peaks.add_peaks_true_false(self.data)
-        self.df = pd.read_csv(self.data, sep='\t', header=None, names=['Messwerte in mV','Zeit in ms',])
+        self.df_1 = find_peaks.add_peaks_true_false(self.data)  #df mit den peaks für avg_hr berechnung
+        self.df = pd.read_csv(self.data, sep='\t', header=None, names=['Messwerte in mV','Zeit in ms',])  #df ohne peaks für graph
         #self.df = self.df.iloc[:5000]  # Entferne die erste Zeile, da sie nur die Spaltennamen enthält
 
     def printen(self):
@@ -33,9 +34,42 @@ class EKGdata:
 
     def plot_time_series(self):
 
+        #Plot des EKGs mit Peaks gefärbt
+
+        fig = go.Figure()
+
+        df_plot = self.df_1[:2000]
+
+        fig.add_trace(
+            go.Scatter(
+                x=df_plot["Time in ms"],
+                y=df_plot["EKG in mV"],
+                mode="lines",
+                name="EKG"
+            )
+        )
+
+        peak_df = df_plot[df_plot["is_peak"]]
+        
+        fig.add_trace(
+            go.Scatter(
+                x=peak_df["Time in ms"],
+                y=peak_df["EKG in mV"],
+                mode="markers",
+                marker=dict(
+                    color = "red",
+                    size = 8
+                ),
+                name ="Peaks"
+            )
+        )
+        #fig.show()
+        return fig
+        '''
         # Erstellte einen Line Plot, der ersten 2000 Werte mit der Zeit aus der x-Achse
         self.fig = px.line(self.df.head(2000), x="Zeit in ms", y="Messwerte in mV")
         return self.fig 
+        '''
     
     def calc_avg_hr(self):
         df = self.df_1.copy()
@@ -66,6 +100,7 @@ if __name__ == "__main__":
     '''
     #print(EKGdata.ekg_dict_choose(0))
     
-    objekt = EKGdata(EKGdata.ekg_dict_choose(0,1))
+    objekt = EKGdata(EKGdata.ekg_dict_choose(0,0))
     #objekt.printen()
     print(objekt.calc_avg_hr())
+    #objekt.plot_time_series()

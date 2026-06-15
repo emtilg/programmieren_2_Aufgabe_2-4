@@ -32,18 +32,20 @@ def find_peaks(series, threshold, respacing_factor=5):
 
     return peaks
 
-df = pd.read_csv(r'data/ekg_data/01_Ruhe.txt', sep='\t', header=None, names=['EKG in mV','Time in ms',])
+#df = pd.read_csv(r'data/ekg_data/01_Ruhe.txt', sep='\t', header=None, names=['EKG in mV','Time in ms',])
 
-peaks = find_peaks(df["EKG in mV"].copy(), 340, 5)
+#peaks = find_peaks(df["EKG in mV"].copy(), 340, 5)
 
-peaks[0:5]
+#peaks[0:5]
 
 #print(peaks[0:5])
 
 def add_peaks_true_false(link):
     df = pd.read_csv(link, sep='\t', header=None, names=['EKG in mV','Time in ms',])
 
+    peaks = find_peaks(df["EKG in mV"].copy(), 340, 5)
+    
     df["is_peak"] = df.index.isin(peaks)
     return df
 
-#print(add_peaks_true_false('data/ekg_data/01_Ruhe.txt')[300:500])
+print(add_peaks_true_false('data/ekg_data/01_Ruhe.txt')[319:500])
