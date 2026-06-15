@@ -54,7 +54,7 @@ with spalte1:
         #st.write("###### Alter: ",person.Person.load_by_id(id).calc_age())
         st.write("###### Durchschnittspuls: ",avg_hr_rounded)
 
-    except IndexError:
+    except Exception:
         st.write("######  ")
 
 with spalte2:
@@ -73,9 +73,9 @@ with spalte2:
 
         st.plotly_chart(fig)
 
-    except IndexError:
+    except Exception:
         st.markdown("<br>"*4, unsafe_allow_html=True)
-        st.info("######     Diese Person hat keinen EKG bei Belastung durchgeführt")
+        st.info("#####     Für diese Person / Auswahl gibt es keine Daten")
 
 
 
