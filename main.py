@@ -1,7 +1,6 @@
 import streamlit as st
 import read_data
 from PIL import Image
-import ignore_ekgdata
 import person
 import ekgdata_new_class
 
@@ -28,7 +27,7 @@ id = eintrag["id"]
 spalte1, spalte2 = st.columns([1,3])
 
 with spalte1:
-    st.markdown("<br>"*4, unsafe_allow_html=True)
+    st.markdown("<br>"*3, unsafe_allow_html=True)
     image = Image.open(Picturepath)
     st.image(image)
 
@@ -51,7 +50,7 @@ with spalte1:
         avg_hr = Figure.calc_avg_hr()
         avg_hr_rounded = round(avg_hr)
 
-        #st.write("###### Alter: ",person.Person.load_by_id(id).calc_age())
+        st.write("###### Alter: ",person.Person.load_by_id(id).calc_age())
         st.write("###### Durchschnittspuls: ",avg_hr_rounded)
 
     except Exception:
